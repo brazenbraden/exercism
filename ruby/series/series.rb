@@ -1,22 +1,13 @@
-# 25/09/2020
+# frozen_string_literal: true
 
 class Series
   def initialize(series)
-    @series = series.chars
+    @series = series
   end
 
   def slices(num)
-    res = []
-    index = 0
-    while (index + num) <= series.length
-      binding.irb
-      res << "#{series[index]}"
-      index += 1
-    end
-    res
+    raise ArgumentError if num > @series.length
+
+    @series.chars.each_cons(num).map(&:join)
   end
-
-  private
-
-  attr_reader :series
 end
